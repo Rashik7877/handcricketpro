@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Cricket Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Authentication Section -->
+        <section id="auth-section" class="active-section">
+            <div class="glass-card auth-card">
+                <h1 class="logo-text">Hand Cricket <span class="highlight">Pro</span></h1>
+
+                <!-- Login Form -->
+                <div id="login-form" class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <input type="text" id="login-username" placeholder="Username" autocomplete="off">
+                    <div class="password-container">
+                        <input type="password" id="login-password" placeholder="Password">
+                        <span class="toggle-password" data-target="login-password">👁️</span>
+                    </div>
+                    <div class="form-actions">
+                        <a href="#" id="show-forgot-password" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button id="login-btn" class="primary-btn">Login</button>
+                    <p class="switch-auth">New here? <span id="show-signup">Create Account</span></p>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signup-form" class="auth-form hidden">
+                    <h2>Create Account</h2>
+                    <input type="text" id="signup-username" placeholder="Choose Username" autocomplete="off">
+                    <div class="password-container">
+                        <input type="password" id="signup-password" placeholder="Create Password">
+                        <span class="toggle-password" data-target="signup-password">👁️</span>
+                    </div>
+                    
+                    <!-- Security Question -->
+                    <div class="security-section">
+                        <select id="signup-security-question">
+                            <option value="" disabled selected>Select Security Question</option>
+                            <option value="color">What is your favorite color?</option>
+                            <option value="pet">What is the name of your first pet?</option>
+                            <option value="city">In what city were you born?</option>
+                            <option value="food">What is your favorite food?</option>
+                            <option value="school">What is the name of your first school?</option>
+                        </select>
+                        <input type="text" id="signup-security-answer" placeholder="Your Answer">
+                    </div>
+
+                    <button id="signup-btn" class="primary-btn">Sign Up</button>
+                    <p class="switch-auth">Already have an account? <span id="show-login">Login</span></p>
+                </div>
+
+                <!-- Forgot Password Form -->
+                <div id="forgot-password-form" class="auth-form hidden">
+                    <h2>Reset Password</h2>
+                    
+                    <!-- Step 1: Username -->
+                    <div id="forgot-step-1">
+                        <input type="text" id="forgot-username" placeholder="Enter Username">
+                        <button id="forgot-next-btn" class="primary-btn">Next</button>
+                    </div>
+
+                    <!-- Step 2: Security Question -->
+                    <div id="forgot-step-2" class="hidden">
+                        <p id="security-question-display" class="security-question-text"></p>
+                        <input type="text" id="forgot-answer" placeholder="Your Answer">
+                        <div class="password-container">
+                            <input type="password" id="new-password" placeholder="New Password">
+                            <span class="toggle-password" data-target="new-password">👁️</span>
+                        </div>
+                        <button id="reset-password-btn" class="primary-btn">Reset Password</button>
+                    </div>
+
+                    <p class="switch-auth"><span id="back-to-login">Back to Login</span></p>
+                </div>
+
+                <div id="auth-message" class="error-message"></div>
+            </div>
+        </section>
+
+        <!-- Avatar Selection Section -->
+        <section id="avatar-section" class="hidden-section">
+            <div class="glass-card avatar-card">
+                <h2>Choose Your Avatar</h2>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-id="1">👾</div>
+                    <div class="avatar-option" data-id="2">🤖</div>
+                    <div class="avatar-option" data-id="3">🏆</div>
+                    <div class="avatar-option" data-id="4">⚔️</div>
+                    <div class="avatar-option" data-id="5">🛡️</div>
+                    <div class="avatar-option" data-id="6">🔥</div>
+                </div>
+                <button id="confirm-avatar-btn" class="primary-btn" disabled>Start Playing</button>
+            </div>
+        </section>
+
+        <!-- Main Menu Section -->
+        <section id="menu-section" class="hidden-section">
+            <div class="glass-card menu-card">
+                <div class="user-profile">
+                    <div class="avatar"></div>
+                    <h2 id="player-name-display">Player</h2>
+                    <div class="high-score-badge">
+                        <span class="label">Highest Score</span>
+                        <span id="high-score-display" class="value">0</span>
+                    </div>
+                </div>
+                <div class="menu-buttons">
+                    <button id="play-btn" class="menu-btn">Play Game</button>
+                    <button id="rules-btn" class="menu-btn secondary">Rules</button>
+                    <button id="logout-btn" class="menu-btn danger">Logout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toss Section -->
+        <section id="toss-section" class="hidden-section">
+            <div class="glass-card toss-card">
+                <h2>Coin Toss</h2>
+                <div class="coin-container">
+                    <div class="coin" id="coin">
+                        <div class="side heads">H</div>
+                        <div class="side tails">T</div>
+                    </div>
+                </div>
+
+                <div id="toss-controls">
+                    <p>Choose Heads or Tails</p>
+                    <div class="toss-options">
+                        <button class="toss-btn" data-choice="heads">Heads</button>
+                        <button class="toss-btn" data-choice="tails">Tails</button>
+                    </div>
+                </div>
+
+                <div id="decision-controls" class="hidden">
+                    <p id="decision-text">You Won! Choose to:</p>
+                    <div class="decision-options">
+                        <button class="toss-btn" id="choose-bat">Bat 🏏</button>
+                        <button class="toss-btn" id="choose-bowl">Bowl 🥎</button>
+                    </div>
+                </div>
+
+                <p id="toss-result-message" class="toss-message"></p>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules-section" class="hidden-section">
+            <div class="glass-card rules-card">
+                <h2>How to Play</h2>
+                <div class="rules-content">
+                    <p>1. Choose a number between 1-6.</p>
+                    <p>2. If your number matches the bot's number, the batter is OUT.</p>
+                    <p>3. If the numbers are different, the batter scores that many runs.</p>
+                    <p>4. Score as much as possible before getting out!</p>
+                </div>
+                <button id="back-from-rules" class="secondary-btn">Back to Menu</button>
+            </div>
+        </section>
+
+        <!-- Game Section -->
+        <section id="game-section" class="hidden-section">
+            <div class="game-header">
+                <div class="score-pill">
+                    <span class="label">Score</span>
+                    <span id="score-display" class="value">0/0</span>
+                </div>
+                <div class="target-pill hidden" id="target-display-container">
+                    <span class="label">Target</span>
+                    <span id="target-display" class="value">--</span>
+                </div>
+            </div>
+
+            <div class="game-arena">
+                <!-- Bot Area -->
+                <div class="player-zone bot-zone">
+                    <div class="hand-display" id="bot-hand">🤖</div>
+                    <p class="zone-label">Bot</p>
+                </div>
+
+                <!-- VS Badge -->
+                <div class="vs-badge">VS</div>
+
+                <!-- Player Area -->
+                <div class="player-zone user-zone">
+                    <div class="hand-display" id="user-hand">✋</div>
+                    <p class="zone-label">You</p>
+                </div>
+            </div>
+
+            <div class="commentary-box">
+                <p id="commentary-text">Ready to play?</p>
+            </div>
+
+            <div class="controls-grid">
+                <button class="control-btn" data-value="1">1</button>
+                <button class="control-btn" data-value="2">2</button>
+                <button class="control-btn" data-value="3">3</button>
+                <button class="control-btn" data-value="4">4</button>
+                <button class="control-btn" data-value="5">5</button>
+                <button class="control-btn" data-value="6">6</button>
+            </div>
+        </section>
+
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content glass-card">
+                <h2 id="game-result-title">Game Over</h2>
+                <p id="game-result-message">You scored 50 runs!</p>
+                <button id="restart-btn" class="primary-btn">Play Again</button>
+                <button id="home-btn" class="secondary-btn">Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Milestone Overlay -->
+        <div id="milestone-overlay" class="milestone-overlay">
+            <div id="milestone-text" class="milestone-text">50!</div>
+        </div>
+
+        <!-- Animation Overlay (Out/Win) -->
+        <div id="animation-overlay" class="animation-overlay hidden">
+            <div id="animation-content" class="animation-content"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
